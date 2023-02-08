@@ -158,10 +158,10 @@ const updateBlogPost = {
                         title:{
                             type:"string",
                         },
-                        desc:{
+                        body:{
                             type:"string",
                         },
-                        image:{
+                        UploadImages:{
                             type:"file",
                             description:"the image of the blog post"
                         }

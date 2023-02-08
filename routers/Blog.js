@@ -8,6 +8,7 @@ const multer = require('multer');
 const middleware = require('../midlewares/midleware');
 const cloudinary = require('cloudinary');
 const { dotenv } = require('dotenv');
+const { findById } = require('../module/Blog');
 
 
 
@@ -71,18 +72,16 @@ router.get("/all",async(req,res)=>{
         res.status(404).json(error)
     }
 })
-router.patch("/update/:edit_id",middleware,async(req,res)=>{
+router.patch("/update/:edit_id",middleware,upload.single('UploadImages'),async(req,res)=>{
     
     try {
-        const {edit_id} = req.params;
-        const blog= await Blog.findByIdAndUpdate(
-            {
-                _id:edit_id
-            },
-            {
-                $set:req.body 
-            });
-        res.status(200).json(blog)
+        const post =await Blog.findById(req.params.edit_id)
+        // console.log(post.img)
+       const upl = await cloudinary.uploader.destroy(post.img)
+       //console.log(upl)
+        const result =  await cloudinary.uploader.upload(req.file.path)
+        const blog= await Blog.findByIdAndUpdate(req.params.edit_id,{$set:req.body},{new : true});
+        res.status(200).json({blog})
 
     } catch (error) {
         res.status(404).json(error)
