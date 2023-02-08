@@ -123,4 +123,21 @@ router.get(("/:req_id"),async(req,res,next)=>
 }
 )
 
+// router.post("/likes/:id",async(req,res,next)=>{
+//     const post= await Blog.findById(req.params.id)
+//     const updatePost = await Blog
+//     res.status(200).json({blog})
+// })
+// router.patch("/likes/:id",middleware,async(req,res,next)=>{
+//     try {
+//         const blog =  await Blog.findById(req.params.id );
+//         // check wether it is already liked
+//     } catch (error) {
+//         console.log(error.message);
+//         res.status(500).send('server error')
+//     }
+// })
+
+
 module.exports=router
+

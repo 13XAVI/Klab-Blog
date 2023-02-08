@@ -12,7 +12,7 @@ const BlogSchema = new mongoose.Schema({
         type:String,
     },
     likes:{
-        type:String,
+        type:Number,
     },
     comment:{
         type:String
