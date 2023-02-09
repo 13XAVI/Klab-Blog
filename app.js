@@ -14,6 +14,7 @@ const swaggerDoc = require('./routers/src/swagga')
 const cors = require("cors")
 const swaggerDocs = require('./routers/src/swagga')
 
+app.use(cors())
 app.use(express.json())
 
 
