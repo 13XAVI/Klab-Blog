@@ -18,7 +18,7 @@ app.use(express.json())
 
 
 mongoose.set('strictQuery',true);
-mongoose.connect('mongodb://127.0.0.1:27017/BLOG')
+mongoose.connect('mongodb+srv://Tresor:Tresegue@blog-node.jswvzcy.mongodb.net/Blog?retryWrites=true&w=majority')
 .then(console.log("connected to database"))
 .catch((error)=>{
     console.log(error)
