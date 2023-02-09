@@ -123,7 +123,7 @@ router.get(("/:req_id"),async(req,res,next)=>
 }
 )
 
-router.post("/likes/:id",async(req,res,next)=>{
+router.post("/likes/:id",middleware,async(req,res,next)=>{
     try {
         const post= await Blog.findOne({_id:req.params.id})
         if(!post){
@@ -134,13 +134,14 @@ router.post("/likes/:id",async(req,res,next)=>{
         })
         res.status(200).json('post has been updated')  
     } catch (error) {
+//console.log(error)
        res.status(500).send() 
     }
     
     
    
 })
-router.post("/unlikes/:id",async(req,res,next)=>{
+router.post("/unlikes/:id",middleware,async(req,res,next)=>{
     try {
         const post= await Blog.findOne({_id:req.params.id})
         if(!post){

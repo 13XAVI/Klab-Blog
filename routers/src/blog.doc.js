@@ -185,9 +185,14 @@ const updateBlogPost = {
         }
     }
 }
-/*const likeBlog = {
+const likeBlog = {
     tags:['Blog'],
     description:"Like a Post",
+    security:[
+        {
+            token: []
+        }
+    ],
     parameters:[
         {
             name:"id",
@@ -215,6 +220,11 @@ const updateBlogPost = {
 const unlikeBlog = {
     tags:['Blog'],
     description:"Unlike a Post",
+    security:[
+        {
+            token:[]
+        }
+    ],
     parameters:[
         {
             name:"id",
@@ -238,7 +248,7 @@ const unlikeBlog = {
             }
         }
     }
-}*/
+}
 exports.blogRouteDocs = {
     "/Blog/createBlog":{
         post:createBlog
@@ -255,10 +265,10 @@ exports.blogRouteDocs = {
     "/Blog/update/{id}":{
         patch:updateBlogPost
     }
-    // ,"/api/posts/{id}/like":{
-    //     post:likeBlog
-    // },
-    // "/api/posts/{id}/unlike":{
-    //     put:unlikeBlog
-    // }
+     ,"/blog/likes/{id}":{
+        post:likeBlog
+     },
+     "/Blog/unlikes/{id}":{
+         post:unlikeBlog
+     }
 }
