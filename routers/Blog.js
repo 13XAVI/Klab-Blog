@@ -9,6 +9,8 @@ const middleware = require('../midlewares/midleware');
 const cloudinary = require('cloudinary');
 const { dotenv } = require('dotenv');
 const { findById } = require('../module/Blog');
+const coments = require('../module/coments')
+const usr = require('../module/User')
 
 
 
@@ -127,12 +129,16 @@ router.post("/likes/:id",middleware,async(req,res,next)=>{
     try {
         const post= await Blog.findOne({_id:req.params.id})
         if(!post){
-            res.status(200).json('post has not found')
+            res.status(200).json('post has been')
         }
         await Blog.updateOne({_id :post._id},{
             likes : post.likes + 1
+            
         })
-        res.status(200).json('post has been updated')  
+        if (post.likes +1){
+            res.status(200).json('post has already updated')  
+        }
+        res.status(200).json('Like added')  
     } catch (error) {
 //console.log(error)
        res.status(500).send() 
@@ -159,6 +165,41 @@ router.post("/unlikes/:id",middleware,async(req,res,next)=>{
    
 })
 
+
+router.post('/CreateComment/:id',middleware,async(req,res,next)=>{
+const blog = await Blog.findById(req.params.id);
+if (!blog){
+    res.status(400).json({message:"Post not Found"})
+}
+const  comment = await new coments({
+    comment : req.body.comment,
+    blog : req.params.id,
+    userId:req.body._id
+    })
+  try {
+    await comment.save();
+    //Associate Post with comment
+    blog.comment.push(comment)
+    return res.send({comment}).json({blog})
+  } catch (error) {
+    res.status(404).send({message : error}) 
+  }
+
+})
+
+router.get("/GetComment/:id",async(req,res)=>{
+    try{
+        const comnt=await coments.findOne();
+        res.send(comnt)
+    }catch(error){
+    
+    res.status(404).json(error)
+    }
+})
+router.delete('/DeleteComment/:id',middleware,async (req,res,next)=>{
+    await coments.findByIdAndDelete(req.params.commentId);
+    res.status(200).json({message:'Deleted successfully'})
+})
 
 
 module.exports=router

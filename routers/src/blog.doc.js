@@ -249,6 +249,112 @@ const unlikeBlog = {
         }
     }
 }
+const CreatecommentBlog = {
+    tags:['Blog'],
+    description:"Unlike a Post",
+    security:[
+        {
+            token:[]
+        }
+    ],
+    parameters:[
+        {
+            name:"id",
+            in:"path",
+            description:"id of the blog",
+            type:"string",
+            example:"63e49502981c85d9d72937f0",
+            properties:{
+            comment :{
+             type : String , ref: "User"   
+            },
+           
+            }
+        }
+    ],
+    responses:{
+        200:{
+            description:"OK",
+            content:{
+                 "application/json":{
+                    type:'object',
+                    example:{
+                        status:"success",
+                        data:[]
+                    }
+                 }
+            }
+        }
+    }
+}
+
+const getBlogCommentById = {
+    tags:['Blog'],
+    description:"Get blog comment by id",
+    security: [
+        {
+          token: [],
+        },
+    ],
+    parameters:[
+        {
+            name:"id",
+            in:"path",
+            description:"id of the blog",
+            type:"string",
+            example:"63e49502981c85d9d72937f0"
+        }
+    ],
+    responses:{
+        200:{
+            description:"OK",
+            content:{
+                 "application/json":{
+                    type:'object',
+                    example:{
+                        status:"success",
+                        data:[]
+                    }
+                 }
+            }
+        }
+    }
+}
+
+const deleteCommentBlogId = {
+    tags:['Blog'],
+    description:"Delete the comment blog by id",
+    security: [
+        {
+          token:[],
+        },
+    ],
+    parameters:[
+        {
+            name:"id",
+            in:"path",
+            description:"id of the comment",
+            type:"string"
+        }
+    ],
+
+    responses:{
+        200:{
+            description:"OK",
+            content:{
+                 "application/json":{
+                    type:'object',
+                    example:{
+                        status:"success",
+                        data:[]
+                    }
+                 }
+            }
+        }
+    }
+}
+
+
 exports.blogRouteDocs = {
     "/Blog/createBlog":{
         post:createBlog
@@ -270,5 +376,14 @@ exports.blogRouteDocs = {
      },
      "/Blog/unlikes/{id}":{
          post:unlikeBlog
-     }
+     },
+     "/Blog/CreateComment/{id}":{
+        post:CreatecommentBlog
+    },
+    "/Blog/GetComment/{id}":{
+        get:getBlogCommentById
+    },
+    "/Blog/DeleteComment/{id}":{
+        delete:deleteCommentBlogId
+    }
 }

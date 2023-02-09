@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const BlogSchema = new mongoose.Schema({
   title:{
     type:String,
-    required:true,
+    //required:true,
     unique:true,
   },
     body :{
@@ -15,10 +15,10 @@ const BlogSchema = new mongoose.Schema({
         type:Number,
         default:0
     },
-    comment:{
-        type:String
-
-    },
+    comment:[{
+        type:String,
+        href:"coments"
+    }],
     img:{
         type:String ,
         description:"the image of the blog post"

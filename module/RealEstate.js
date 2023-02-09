@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const AdminSchema = new mongoose.Schema({
+const RealEstateSchema = new mongoose.Schema({
     Firstname:{
         type:String,
         Requied:true
@@ -21,4 +21,4 @@ const AdminSchema = new mongoose.Schema({
     }
 }
 )
-module.exports = mongoose.model('Admin',AdminSchema);
+module.exports = mongoose.model('RealEstate',RealEstateSchema);
