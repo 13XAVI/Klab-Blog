@@ -76,7 +76,7 @@ router.patch("/update/:edit_id",middleware,upload.single('UploadImages'),async(r
     
     try {
         const post =await Blog.findById(req.params.edit_id)
-        // console.log(post.img)
+         console.log(post.img)
        const upl = await cloudinary.uploader.destroy(post.img)
        //console.log(upl)
         const result =  await cloudinary.uploader.upload(req.file.path)
