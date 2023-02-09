@@ -17,7 +17,7 @@ const options = {
         description: 'Development server',
       },
       {
-        url: 'http://localhost:7000',
+        url: 'https://xavier-x22k.onrender.com',
         description: 'Production server',
       },
     ],
