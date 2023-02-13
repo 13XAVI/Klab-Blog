@@ -28,6 +28,7 @@ app.listen(PORT,()=>{
     console.log(`the port is running on ${PORT}`)
 })
 swaggerDocs(app)
+app.use('/uploads',express.static("./uploads"))
 app.use(('/blog'),BlogRouter)
 app.use(("/user"),userRoutes)
 
