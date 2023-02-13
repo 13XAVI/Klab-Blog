@@ -20,6 +20,11 @@ const options = {
         url: 'https://xavier-x22k.onrender.com',
         description: 'Production server',
       },
+      {
+        url: 'https://odd-gold-turkey-veil.cyclic.app',
+        description: 'Production server',
+      },
+
     ],
     tags: [
       { name: 'User', description: 'User Routes' },
