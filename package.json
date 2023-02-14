@@ -4,7 +4,7 @@
   "description": "Blog App",
   "main": "app.js",
   "scripts": {
-    "start": " npm run build && node ./dist/app.js",
+    "start": "node ./dist/app.js",
     "dev": "nodemon --exec babel-node ./All/app.js",
     "build": "babel All -d dist"
   },
