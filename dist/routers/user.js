@@ -119,6 +119,7 @@ router.post("/Login", /*#__PURE__*/function () {
           }
           result = bcrypt.compare(req.body.password, user.password);
           if (!result) {
+            console.log(error);
             res.status({
               message: "Error"
             });

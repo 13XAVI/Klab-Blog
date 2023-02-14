@@ -18,7 +18,7 @@ var _require = require('dotenv'),
 var _require2 = require('../module/Blog'),
   findById = _require2.findById;
 var coments = require('../module/coments');
-var usr = require('../module/User');
+require('dotenv').config();
 var storage = multer.diskStorage({
   destination: function destination(req, file, cb) {
     cb(null, './uploads');

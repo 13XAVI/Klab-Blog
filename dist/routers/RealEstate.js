@@ -7,70 +7,81 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-var Estate = require('../module/RealEstate/');
-var Comment = require('../coments');
-var User = require('../User');
+var Estate = require('../module/RealEstate');
+var User = require('../module/User');
 var express = require('express');
-var coments = require('../coments');
 var router = express.Router();
-var upload = require('');
 var cloudinary = require('cloudinary');
-var middleware = require('../../midleware');
-router.post('/createEstate', middleware, upload.single('UploadImages'), /*#__PURE__*/function () {
+var middleware = require('../midlewares/midleware');
+var multer = require('multer');
+require('dotenv').config();
+var storage = multer.diskStorage({
+  destination: function destination(req, file, cb) {
+    cb(null, './uploads');
+  },
+  filename: function filename(req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+var fileFilter = function fileFilter(req, file, cb) {
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+var upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  }
+});
+
+//cloudinary configuration
+
+cloudinary.config({
+  cloud_name: process.env.cloud_name,
+  api_key: process.env.api_key,
+  api_secret: process.env.api_secret
+});
+router.post('/createEstate', upload.array('UploadImages'), /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(req, res, next) {
-    var user, files, url, _iterator, _step, file, result, estate;
+    var files, url, _iterator, _step, file, result, estate;
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
           _context.prev = 0;
-          console.log(req.files, 'dasghfjgklf');
-          _context.next = 4;
-          return User.findOne({
-            _id: req.userData.id
-          });
-        case 4:
-          user = _context.sent;
-          if (user) {
-            _context.next = 8;
-            break;
-          }
-          console.log(user);
-          return _context.abrupt("return", res.status(404).send({
-            error: "User not found"
-          }));
-        case 8:
           files = req.files;
-          url = [];
-          console.log(files);
+          url = []; // console.log(files);
           _iterator = _createForOfIteratorHelper(files);
-          _context.prev = 12;
+          _context.prev = 4;
           _iterator.s();
-        case 14:
+        case 6:
           if ((_step = _iterator.n()).done) {
-            _context.next = 22;
+            _context.next = 14;
             break;
           }
           file = _step.value;
-          _context.next = 18;
+          _context.next = 10;
           return cloudinary.uploader.upload(file.path);
-        case 18:
+        case 10:
           result = _context.sent;
           url.push(result.secure_url);
-        case 20:
-          _context.next = 14;
+        case 12:
+          _context.next = 6;
           break;
-        case 22:
-          _context.next = 27;
+        case 14:
+          _context.next = 19;
           break;
-        case 24:
-          _context.prev = 24;
-          _context.t0 = _context["catch"](12);
+        case 16:
+          _context.prev = 16;
+          _context.t0 = _context["catch"](4);
           _iterator.e(_context.t0);
-        case 27:
-          _context.prev = 27;
+        case 19:
+          _context.prev = 19;
           _iterator.f();
-          return _context.finish(27);
-        case 30:
+          return _context.finish(19);
+        case 22:
           estate = new Estate({
             location: {
               province: req.body.province,
@@ -88,67 +99,25 @@ router.post('/createEstate', middleware, upload.single('UploadImages'), /*#__PUR
             posted_by: user.username,
             userId: user._id
           });
-          _context.next = 33;
+          _context.next = 25;
           return estate.save();
-        case 33:
+        case 25:
           return _context.abrupt("return", res.status(200).json(estate));
-        case 36:
-          _context.prev = 36;
+        case 28:
+          _context.prev = 28;
           _context.t1 = _context["catch"](0);
           console.log(_context.t1);
           return _context.abrupt("return", res.status(400).json({
             message: _context.t1
           }));
-        case 40:
+        case 32:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[0, 36], [12, 24, 27, 30]]);
+    }, _callee, null, [[0, 28], [4, 16, 19, 22]]);
   }));
   return function (_x, _x2, _x3) {
     return _ref.apply(this, arguments);
-  };
-}());
-router.get("/Get", /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(req, res) {
-    var comment;
-    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-      while (1) switch (_context2.prev = _context2.next) {
-        case 0:
-          _context2.next = 2;
-          return Comment.find();
-        case 2:
-          comment = _context2.sent;
-          res.send(comment);
-        case 4:
-        case "end":
-          return _context2.stop();
-      }
-    }, _callee2);
-  }));
-  return function (_x4, _x5) {
-    return _ref2.apply(this, arguments);
-  };
-}());
-router["delete"]("/delete", /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(req, res) {
-    return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-      while (1) switch (_context3.prev = _context3.next) {
-        case 0:
-          _context3.next = 2;
-          return Comment.findByIdAndDelete(req.params.commentId);
-        case 2:
-          res.status(200).json({
-            message: 'Deleted successfully'
-          });
-        case 3:
-        case "end":
-          return _context3.stop();
-      }
-    }, _callee3);
-  }));
-  return function (_x6, _x7) {
-    return _ref3.apply(this, arguments);
   };
 }());
 module.exports = router;

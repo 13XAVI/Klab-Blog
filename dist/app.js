@@ -1,3 +1,5 @@
+"use strict";
+
 require('dotenv').config();
 var express = require('express');
 var Router = express.Router();
@@ -24,6 +26,7 @@ app.listen(PORT, function () {
   console.log("the port is running on ".concat(PORT));
 });
 swaggerDocs(app);
+app.use('/uploads', express["static"]("./uploads"));
 app.use('/blog', BlogRouter);
 app.use("/user", userRoutes);
 app.use("/RealEstate", RealEstateRouter);

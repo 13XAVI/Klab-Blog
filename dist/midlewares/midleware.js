@@ -2,6 +2,17 @@
 
 require("dotenv").config();
 var jwt = require("jsonwebtoken");
+
+// const verifyTokenAndRole = (req,res,next) =>{
+//     verifyToken(req,res,() =>{
+//         if(req.user.role === 'admin'){
+//             next();
+//         }
+//         else{
+//         res.status(400).json(error)
+//         }
+//     })
+//}
 var middleware = function middleware(req, res, next) {
   try {
     var authHeader = req.headers.token;
