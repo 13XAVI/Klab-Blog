@@ -23,7 +23,12 @@ const options = {
       {
         url: 'https://odd-gold-turkey-veil.cyclic.app',
         description: 'Production server',
+<<<<<<< HEAD:All/routers/src/swagga.js
       }
+=======
+      },
+
+>>>>>>> e54d4ced0149ae9da0af99b12e7f4f2b0cd84342:routers/src/swagga.js
     ],
     tags: [
       { name: 'User', description: 'User Routes' },
