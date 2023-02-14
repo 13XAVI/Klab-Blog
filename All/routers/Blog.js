@@ -10,7 +10,7 @@ const cloudinary = require('cloudinary');
 const { dotenv } = require('dotenv');
 const { findById } = require('../module/Blog');
 const coments = require('../module/coments')
-const usr = require('../module/User')
+require('dotenv').config();
 
 
 
@@ -203,4 +203,3 @@ router.delete('/DeleteComment/:id',middleware,async (req,res,next)=>{
 
 
 module.exports=router
-

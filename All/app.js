@@ -5,14 +5,16 @@ const PORT = 7000
 const http = require('http')
 const server = http.createServer()
 const mongoose = require('mongoose')
-const BlogRouter = require('./routers/Blog')
+const BlogRouter = require('./module/Blog')
 const app = express();
-const blog = require('./routers/Blog')
-const router = require('./routers/Blog')
-const userRoutes = require("./routers/user")
-const swaggerDoc = require('./routers/src/swagga')
+// const blog = require('./midlewares/module/routers/Blog')
+// const router = require('./midlewares/module/routers/Blog')
+const userRoutes = require("../All/routers/user")
+// const swaggerDoc = require('./midlewares/module/routers/src/swagga')
 const cors = require("cors")
 const swaggerDocs = require('./routers/src/swagga')
+const RealEstateRouter = require('./routers/RealEstate')
+
 
 app.use(cors())
 app.use(express.json())
@@ -30,6 +32,7 @@ app.listen(PORT,()=>{
 swaggerDocs(app)
 app.use(('/blog'),BlogRouter)
 app.use(("/user"),userRoutes)
+app.use(("/RealEstate"),RealEstateRouter)
 
 
 app.use(("/blog"),(req,res,next)=>{

@@ -70,15 +70,28 @@ const createBlog = {
                     type:"object",
                     properties:{
                         title:{
-                            type:"string",
-                        },
-                        desc:{
-                            type:"string",
-                        },
-                        UploadImages:{
-                            type:"file",
-                            description:"the image of the blog post"
-                        }
+                            type:String,
+                            //required:true,
+                            unique:true,
+                          },
+                            body :{
+                                type:String,        
+                            },
+                            Author:{
+                                type:String,
+                            },
+                            likes:{
+                                type:Number,
+                                default:0
+                            },
+                            comment:[{
+                                type:String,
+                                href:"coments"
+                            }],
+                            img:{
+                                type:String ,
+                                description:"the image of the blog post"
+                            }
                     }
                 }
             }

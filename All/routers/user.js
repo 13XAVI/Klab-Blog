@@ -7,9 +7,9 @@ const mongoose = require('mongoose')
 const User = require('../module/User')
 const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken');
-const AuthUser = require("../midlewares/midleware");
+//const AuthUser = require("../../midleware");
 const Blog = require("../module/Blog");
-const middleware = require("../midlewares/midleware");
+//const middleware = require("../../midleware");
 
 
 

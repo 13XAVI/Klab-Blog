@@ -1,6 +1,16 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken")
 
+// const verifyTokenAndRole = (req,res,next) =>{
+//     verifyToken(req,res,() =>{
+//         if(req.user.role === 'admin'){
+//             next();
+//         }
+//         else{
+//         res.status(400).json(error)
+//         }
+//     })
+//}
 const middleware = (req,res,next)=>{
     try {
         const authHeader = req.headers.token;
@@ -19,5 +29,8 @@ const middleware = (req,res,next)=>{
     }
     
 }
+
+
+
 
 module.exports = middleware
