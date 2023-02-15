@@ -5,8 +5,7 @@ const router = express.Router()
 const cloudinary = require('cloudinary');
 const middleware = require('../midlewares/midleware'); 
 const multer = require('multer');
-// const { async } = require('../../dist/routers/Blog');
-const RealEstate = require('../module/RealEstate');
+const Estate = require('../module/RealEstate');
 require('dotenv').config();
 
 
@@ -73,9 +72,9 @@ router.post('/createEstate',upload.array('UploadImages'),async(req,res,next)=>{
     }
 }
 )
-router.get("/GetRealEstate/:id",async(req,res)=>{
+router.get("/GetRealEstate/:id",middleware,async(req,res)=>{
     try{
-        const comnt=await RealEstate.findOne();
+        const comnt=await Estate.findOne();
         res.send(comnt)
     }catch(error){
     
@@ -83,12 +82,19 @@ router.get("/GetRealEstate/:id",async(req,res)=>{
     }
 })
 
-router.get("/all", async (req, res, next) => {
+router.get("/all",middleware, async (req, res, next) => {
     try {
-        const estate = await RealEstate.find();
+        const estate = await Estate.find();
         res.status(200).json(estate)
     } catch (error) {
         res.status(404).json(error)
     }
 })
+
+router.delete('/DeleteRealEstate/:id',middleware,async (req,res,next)=>{
+    await Estate.findByIdAndDelete(req.params._id);
+    res.status(200).json({message:'Deleted successfully'})
+})
+
+
 module.exports=router

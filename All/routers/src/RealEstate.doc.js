@@ -1,5 +1,30 @@
 const { default: file } = require("@babel/core/lib/transformation/file/file")
 
+const listAllRealEstate = {
+    tags:['RealEstate'],
+    description:"List all RealEStates",
+    security: [
+        {
+            token: [],
+        },
+    ],
+    responses:{
+        200:{
+            description:"OK",
+            content:{
+                 "application/json":{
+                    type:'object',
+                    example:{
+                        status:"success",
+                        data:[]
+                    }
+                 }
+            }
+        }
+    }
+}
+
+
 const createRealEstate = {
     tags: ['RealEstate'],
     description: "Create a RealEstate",
@@ -76,9 +101,43 @@ const createRealEstate = {
     }
 }
 
+const RealEstateById = {
+    tags: ['RealEstate'],
+    description: "Get blog by id",
+    security: [
+        {
+            token: [],
+        },
+    ],
+    parameters: [
+        {
+            name: "id",
+            in: "path",
+            description: "id of the RealEstate",
+            type: "string",
+            example: "63ecc8de12c8437cfcc4b19c"
+        }
+    ],
+    responses: {
+        200: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    type: 'object',
+                    example: {
+                        status: "success",
+                        data: []
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 
 const deleteUserById = {
-    tags: ['User'],
+    tags: ['RealEstate'],
     description: "Delete the user by id",
     security: [
         {
@@ -110,8 +169,73 @@ const deleteUserById = {
     }
 }
 
+const updateRealEstate = {
+    tags: ['RealEstate'],
+    description: "Update a RealEState post",
+    security: [
+        {
+            token: [],
+        },
+    ],
+    parameters: [
+        {
+            name: "id",
+            in: "path",
+            description: "id of the blog",
+            type: "string"
+        }
+    ],
+    requestBody: {
+        content: {
+            "multipart/form-data": {
+                schema: {
+                    type: "object",
+                    properties: {
+                        title: {
+                            type: "string",
+                        },
+                        body: {
+                            type: "string",
+                        },
+                        UploadImages: {
+                            type: "file",
+                            description: "the image of the blog post"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    responses: {
+        200: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    type: "object",
+                    example: {
+                        status: "success",
+                        data: []
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
 exports.RealEstateDocs = {
     "/RealEstate/createEstate": {
-        post: createRealEstate,
-    }
+        post:createRealEstate,
+    },
+    "/RealEstate/All": {
+        get:listAllRealEstate,
+    },
+    "/RealEstate/DeleteRealEstate/id": {
+        delete:deleteUserById,
+    },
+    "/RealEstate/GetRealEstate/id": {
+        get:RealEstateById,
+    },
+   
 }

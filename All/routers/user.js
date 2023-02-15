@@ -9,7 +9,7 @@ const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken');
 //const AuthUser = require("../../midleware");
 // const Blog = require("../module/Blog");
-//const middleware = require("../../midleware");
+const middleware = require("../midlewares/midleware");
 
 
 
@@ -105,23 +105,10 @@ router.post("/Login", async (req, res, next) => {
 
 })
 
-// router.delete('/delete/:_id', async(req, res, next) => {
-//     await Blog.remove({ _id: req.params.userId })
-//         .exec()
-//         .then(
-//             result => {
-//                 res.status(200).json({
-//                     message: "User Deleted !"
-//                 })
-//             }
-//         )
-//         .catch(err => {
-//             console.log(err)
-//             res.status(500).json({
-//                 error: err
-//             })
-//         })
-// })
+router.delete('/DeleteUser/:id',middleware,async (req,res,next)=>{
+    await User.findByIdAndDelete(req.params._id);
+    res.status(200).json({message:'Deleted successfully'})
+})
 router.patch("/update/:id", async (req, res) => {
 
     try {
