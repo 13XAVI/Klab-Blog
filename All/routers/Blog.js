@@ -5,6 +5,7 @@ const multer = require('multer');
 const middleware = require('../midlewares/midleware');
 const cloudinary = require('cloudinary');
 require('dotenv').config();
+const coments = require('../module/coments')
 
 
 
@@ -163,20 +164,19 @@ router.post("/unlikes/:id",middleware,async(req,res,next)=>{
 router.post('/CreateComment/:id',middleware,async(req,res,next)=>{
 const blog = await Blog.findById(req.params.id);
 if (!blog){
-    res.status(400).json({message:"Post not Found"})
+    return res.status(400).json({message:error})
 }
-const  comment = await new coments({
+const  comment = new coments({
     comment : req.body.comment,
     blog : req.params.id,
     userId:req.body._id
     })
   try {
     await comment.save();
-    //Associate Post with comment
     blog.comment.push(comment)
-    return res.send({comment}).json({blog})
-  } catch (error) {
-    res.status(404).send({message : error}) 
+    return res.status(200).json({blog, comment})
+  } catch (err) {
+   return  res.status(404).json(err)
   }
 
 })

@@ -1,5 +1,5 @@
 const Estate=require('../module/RealEstate');
-// const User=require('../routers/user');
+
 const  express  = require('express');
 const router = express.Router()
 const cloudinary = require('cloudinary');
@@ -62,8 +62,6 @@ router.post('/createEstate',upload.array('UploadImages'),async(req,res,next)=>{
                 status:req.body.status,
                 LotSize:req.body.lotsize,
                 YearBuilt:req.body.year,
-                // posted_by:User.username,
-                // userId:User._id
             })
             await estate.save();
             return res.status(200).json(estate)
@@ -73,6 +71,8 @@ router.post('/createEstate',upload.array('UploadImages'),async(req,res,next)=>{
     }
 }
 )
-
+router.get("/GetRealEastate",middleware,upload.array("UploadImage"),(res,req,next)=>{
+    
+})
 
 module.exports=router

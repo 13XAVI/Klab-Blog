@@ -17,8 +17,8 @@ const BlogSchema = new mongoose.Schema({
             default:0
         },
         comment:[{
-            type:String,
-            href:"coments"
+            _id:{ type: mongoose.Schema.Types.ObjectId,
+            ref: 'Comments'}
         }],
         img:{
             type:String ,

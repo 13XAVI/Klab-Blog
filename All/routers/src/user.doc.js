@@ -244,5 +244,9 @@ exports.userRouteDocs = {
 },
 "/user/update/{id}":{
     patch:updateUserById
-}
+},
+// "/user/update/{id}":{
+//     patch:getUserById
+// }
+
 };

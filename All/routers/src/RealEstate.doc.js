@@ -1,52 +1,59 @@
 const { default: file } = require("@babel/core/lib/transformation/file/file")
 
-const createRealEstate= {
-    tags:['User'],
-    description:"Create a User",
+const createRealEstate = {
+    tags:['RealEstate'],
+    description:"Create a RealEstate",
+    security: [
+        {
+          token:[],
+        },
+    ],
     requestBody:{
         content:{
-            "application/json":{
+            "multipart/form-data":{
                 schema:{
                     type:"object",
                     properties:{
-                        
-
                         location:{
                             province:{
-                                type:"String"
+                                type:'String'
                             },
                             District:{
-                                type:"String"
+                                type:'String'
                             },
                             street:{
-                                type:"String"
+                                type:'String'
                             }
                         },
                         price:{
-                            type:"String"
+                            type:'String'
                         },
                         YearBuilt:{
-                            type:"Date",
+                            type:'Date',
+                            default: 'Date'.now
                         },
                         image:{
-                            type:"file",
+                            type:'file',
                             default:[]
                         },
                         beds:{
-                            type:"Number"
+                            type:'Number'
                         },
                         description:{
-                            type:"String"
+                            type:'String'
                         },
                         bath:{
-                            type:"Number"
+                            type:'Number'
                         },
                         status:{
-                            type:"String"
+                            type:'String'
                         },
                         
                         LotSize:{
-                            type:"String"
+                            type:'String'
+                        },
+                        description:{
+                            type:'String'
                         }
                     }
                 }
@@ -67,7 +74,7 @@ const createRealEstate= {
             }
         }
     }
-    }
+}
 
     
     const deleteUserById = {
@@ -103,7 +110,7 @@ const createRealEstate= {
         }
         }
 
-        exports.userRouteDocs = {
-            "/RealEstate/createEstate":{
-                post:createRealEstate,
-            }}
+exports.createRealEstate = {
+"/RealEstate/createEstate":{
+post:createRealEstate,
+}}
