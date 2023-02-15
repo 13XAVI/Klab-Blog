@@ -1,98 +1,98 @@
 const listAllBlogs = {
-    tags:['Blog'],
-    description:"List all Blogs",
+    tags: ['Blog'],
+    description: "List all Blogs",
     security: [
         {
-          token: [],
+            token: [],
         },
     ],
-    responses:{
-        200:{
-            description:"OK",
-            content:{
-                 "application/json":{
-                    type:'object',
-                    example:{
-                        status:"success",
-                        data:[]
+    responses: {
+        200: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    type: 'object',
+                    example: {
+                        status: "success",
+                        data: []
                     }
-                 }
+                }
             }
         }
     }
 }
 
 const getBlogById = {
-    tags:['Blog'],
-    description:"Get blog by id",
+    tags: ['Blog'],
+    description: "Get blog by id",
     security: [
         {
-          token: [],
+            token: [],
         },
     ],
-    parameters:[
+    parameters: [
         {
-            name:"id",
-            in:"path",
-            description:"id of the blog",
-            type:"string",
-            example:"63caaf3527b29e1d399896da"
+            name: "id",
+            in: "path",
+            description: "id of the blog",
+            type: "string",
+            example: "63caaf3527b29e1d399896da"
         }
     ],
-    responses:{
-        200:{
-            description:"OK",
-            content:{
-                 "application/json":{
-                    type:'object',
-                    example:{
-                        status:"success",
-                        data:[]
+    responses: {
+        200: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    type: 'object',
+                    example: {
+                        status: "success",
+                        data: []
                     }
-                 }
+                }
             }
         }
     }
 }
 
 const createBlog = {
-    tags:['Blog'],
-    description:"Create a Blog post",
+    tags: ['Blog'],
+    description: "Create a Blog post",
     security: [
         {
-          token:[],
+            token: [],
         },
     ],
-    requestBody:{
-        content:{
-            "multipart/form-data":{
-                schema:{
-                    type:"object",
-                    properties:{
-                        title:{
-                            type:"string",
+    requestBody: {
+        content: {
+            "multipart/form-data": {
+                schema: {
+                    type: "object",
+                    properties: {
+                        title: {
+                            type: "string",
                         },
-                        body:{
-                            type:"string",
+                        body: {
+                            type: "string",
                         },
-                        UploadImages:{
-                            type:"file",
-                            description:"the image of the blog post"
+                        UploadImages: {
+                            type: "file",
+                            description: "the image of the blog post"
                         }
                     }
                 }
             }
         }
     },
-    responses:{
-        200:{
-            description:"OK",
-            content:{
-                "application/json":{
-                    type:"object",
-                    example:{
-                        status:"success",
-                        data:[]
+    responses: {
+        200: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    type: "object",
+                    example: {
+                        status: "success",
+                        data: []
                     }
                 }
             }
@@ -101,84 +101,84 @@ const createBlog = {
 }
 
 const deleteBlogPost = {
-    tags:['Blog'],
-    description:"Delete the blog post by id",
+    tags: ['Blog'],
+    description: "Delete the blog post by id",
     security: [
         {
-          token:[],
+            token: [],
         },
     ],
-    parameters:[
+    parameters: [
         {
-            name:"id",
-            in:"path",
-            description:"id of the blog",
-            type:"string"
+            name: "id",
+            in: "path",
+            description: "id of the blog",
+            type: "string"
         }
     ],
 
-    responses:{
-        200:{
-            description:"OK",
-            content:{
-                 "application/json":{
-                    type:'object',
-                    example:{
-                        status:"success",
-                        data:[]
+    responses: {
+        200: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    type: 'object',
+                    example: {
+                        status: "success",
+                        data: []
                     }
-                 }
+                }
             }
         }
     }
 }
 
 const updateBlogPost = {
-    tags:['Blog'],
-    description:"Update a Blog post",
+    tags: ['Blog'],
+    description: "Update a Blog post",
     security: [
         {
-          token:[],
+            token: [],
         },
     ],
-    parameters:[
+    parameters: [
         {
-            name:"id",
-            in:"path",
-            description:"id of the blog",
-            type:"string"
+            name: "id",
+            in: "path",
+            description: "id of the blog",
+            type: "string"
         }
     ],
-    requestBody:{
-        content:{
-            "multipart/form-data":{
-                schema:{
-                    type:"object",
-                    properties:{
-                        title:{
-                            type:"string",
+    requestBody: {
+        content: {
+            "multipart/form-data": {
+                schema: {
+                    type: "object",
+                    properties: {
+                        title: {
+                            type: "string",
                         },
-                        body:{
-                            type:"string",
+                        body: {
+                            type: "string",
                         },
-                        UploadImages:{
-                            type:"file",
-                            description:"the image of the blog post"
+                        UploadImages: {
+                            type: "file",
+                            description: "the image of the blog post"
                         }
                     }
                 }
             }
         }
     },
-    responses:{
-        200:{
-            description:"OK",
-            content:{
-                "application/json":{
-                    type:"object",
-                    example:{
-                        status:"success",
-                        data:[]
+    responses: {
+        200: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    type: "object",
+                    example: {
+                        status: "success",
+                        data: []
                     }
                 }
             }
@@ -186,171 +186,171 @@ const updateBlogPost = {
     }
 }
 const likeBlog = {
-    tags:['Blog'],
-    description:"Like a Post",
-    security:[
+    tags: ['Blog'],
+    description: "Like a Post",
+    security: [
         {
             token: []
         }
     ],
-    parameters:[
+    parameters: [
         {
-            name:"id",
-            in:"path",
-            description:"id of the blog",
-            type:"string",
-            example:"63caaf3527b29e1d399896da"
+            name: "id",
+            in: "path",
+            description: "id of the blog",
+            type: "string",
+            example: "63caaf3527b29e1d399896da"
         }
     ],
-    responses:{
-        200:{
-            description:"OK",
-            content:{
-                 "application/json":{
-                    type:'object',
-                    example:{
-                        status:"success",
-                        data:[]
+    responses: {
+        200: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    type: 'object',
+                    example: {
+                        status: "success",
+                        data: []
                     }
-                 }
+                }
             }
         }
     }
 }
 const unlikeBlog = {
-    tags:['Blog'],
-    description:"Unlike a Post",
-    security:[
+    tags: ['Blog'],
+    description: "Unlike a Post",
+    security: [
         {
-            token:[]
+            token: []
         }
     ],
-    parameters:[
+    parameters: [
         {
-            name:"id",
-            in:"path",
-            description:"id of the blog",
-            type:"string",
-            example:"63caaf3527b29e1d399896da"
+            name: "id",
+            in: "path",
+            description: "id of the blog",
+            type: "string",
+            example: "63caaf3527b29e1d399896da"
         }
     ],
-    responses:{
-        200:{
-            description:"OK",
-            content:{
-                 "application/json":{
-                    type:'object',
-                    example:{
-                        status:"success",
-                        data:[]
+    responses: {
+        200: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    type: 'object',
+                    example: {
+                        status: "success",
+                        data: []
                     }
-                 }
+                }
             }
         }
     }
 }
 const CreatecommentBlog = {
-    tags:['Blog'],
-    description:"Unlike a Post",
-    security:[
+    tags: ['Blog'],
+    description: "Unlike a Post",
+    security: [
         {
-            token:[]
+            token: []
         }
     ],
-    parameters:[
+    parameters: [
         {
-            name:"id",
-            in:"path",
-            description:"id of the blog",
-            type:"string",
-            example:"63e49502981c85d9d72937f0",
-            properties:{
-                
-            comment :{
-             type : 'String' , ref: "User",
-              description:"This is Crating comment Blog" 
-            },
-           
+            name: "id",
+            in: "path",
+            description: "id of the blog",
+            type: "string",
+            example: "63e49502981c85d9d72937f0",
+            properties: {
+
+                comment: {
+                    type: 'String', ref: "User",
+                    description: "This is Crating comment Blog"
+                },
+
             }
         }
     ],
-    responses:{
-        200:{
-            description:"OK",
-            content:{
-                 "application/json":{
-                    type:'object',
-                    example:{
-                        status:"success",
-                        data:[]
+    responses: {
+        200: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    type: 'object',
+                    example: {
+                        status: "success",
+                        data: []
                     }
-                 }
+                }
             }
         }
     }
 }
 
 const getBlogCommentById = {
-    tags:['Blog'],
-    description:"Get blog comment by id",
+    tags: ['Blog'],
+    description: "Get blog comment by id",
     security: [
         {
-          token: [],
+            token: [],
         },
     ],
-    parameters:[
+    parameters: [
         {
-            name:"id",
-            in:"path",
-            description:"id of the blog",
-            type:"string",
-            example:"63e49502981c85d9d72937f0"
+            name: "id",
+            in: "path",
+            description: "id of the blog",
+            type: "string",
+            example: "63e49502981c85d9d72937f0"
         }
     ],
-    responses:{
-        200:{
-            description:"OK",
-            content:{
-                 "application/json":{
-                    type:'object',
-                    example:{
-                        status:"success",
-                        data:[]
+    responses: {
+        200: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    type: 'object',
+                    example: {
+                        status: "success",
+                        data: []
                     }
-                 }
+                }
             }
         }
     }
 }
 
 const deleteCommentBlogId = {
-    tags:['Blog'],
-    description:"Delete the comment blog by id",
+    tags: ['Blog'],
+    description: "Delete the comment blog by id",
     security: [
         {
-          token:[],
+            token: [],
         },
     ],
-    parameters:[
+    parameters: [
         {
-            name:"id",
-            in:"path",
-            description:"id of the comment",
-            type:"string"
+            name: "id",
+            in: "path",
+            description: "id of the comment",
+            type: "string"
         }
     ],
 
-    responses:{
-        200:{
-            description:"OK",
-            content:{
-                 "application/json":{
-                    type:'object',
-                    example:{
-                        status:"success",
-                        data:[]
+    responses: {
+        200: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    type: 'object',
+                    example: {
+                        status: "success",
+                        data: []
                     }
-                 }
+                }
             }
         }
     }
@@ -358,34 +358,34 @@ const deleteCommentBlogId = {
 
 
 exports.blogRouteDocs = {
-    "/Blog/createBlog":{
-        post:createBlog
+    "/Blog/createBlog": {
+        post: createBlog
     },
-    "/Blog/all":{
-        get:listAllBlogs
+    "/Blog/all": {
+        get: listAllBlogs
     },
-    "/Blog/{id}":{
-        get:getBlogById
+    "/Blog/{id}": {
+        get: getBlogById
     },
-    "/Blog/delete/{id}":{
-        delete:deleteBlogPost
+    "/Blog/delete/{id}": {
+        delete: deleteBlogPost
     },
-    "/Blog/update/{id}":{
-        patch:updateBlogPost
+    "/Blog/update/{id}": {
+        patch: updateBlogPost
     }
-     ,"/blog/likes/{id}":{
-        post:likeBlog
-     },
-     "/Blog/unlikes/{id}":{
-         post:unlikeBlog
-     },
-     "/Blog/CreateComment/{id}":{
-        post:CreatecommentBlog
+    , "/blog/likes/{id}": {
+        post: likeBlog
     },
-    "/Blog/GetComment/{id}":{
-        get:getBlogCommentById
+    "/Blog/unlikes/{id}": {
+        post: unlikeBlog
     },
-    "/Blog/DeleteComment/{id}":{
-        delete:deleteCommentBlogId
+    "/Blog/CreateComment/{id}": {
+        post: CreatecommentBlog
+    },
+    "/Blog/GetComment/{id}": {
+        get: getBlogCommentById
+    },
+    "/Blog/DeleteComment/{id}": {
+        delete: deleteCommentBlogId
     }
 }

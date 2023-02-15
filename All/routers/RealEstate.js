@@ -1,10 +1,12 @@
-const Estate=require('../module/RealEstate');
+
 
 const  express  = require('express');
 const router = express.Router()
 const cloudinary = require('cloudinary');
 const middleware = require('../midlewares/midleware'); 
 const multer = require('multer');
+// const { async } = require('../../dist/routers/Blog');
+const RealEstate = require('../module/RealEstate');
 require('dotenv').config();
 
 
@@ -71,8 +73,22 @@ router.post('/createEstate',upload.array('UploadImages'),async(req,res,next)=>{
     }
 }
 )
-router.get("/GetRealEastate",middleware,upload.array("UploadImage"),(res,req,next)=>{
+router.get("/GetRealEstate/:id",async(req,res)=>{
+    try{
+        const comnt=await RealEstate.findOne();
+        res.send(comnt)
+    }catch(error){
     
+    res.status(404).json(error)
+    }
 })
 
+router.get("/all", async (req, res, next) => {
+    try {
+        const estate = await RealEstate.find();
+        res.status(200).json(estate)
+    } catch (error) {
+        res.status(404).json(error)
+    }
+})
 module.exports=router

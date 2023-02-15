@@ -1,74 +1,74 @@
 const { default: file } = require("@babel/core/lib/transformation/file/file")
 
 const createRealEstate = {
-    tags:['RealEstate'],
-    description:"Create a RealEstate",
+    tags: ['RealEstate'],
+    description: "Create a RealEstate",
     security: [
         {
-          token:[],
+            token: [],
         },
     ],
-    requestBody:{
-        content:{
-            "multipart/form-data":{
-                schema:{
-                    type:"object",
-                    properties:{
-                        location:{
-                            province:{
-                                type:'String'
-                            },
-                            District:{
-                                type:'String'
-                            },
-                            street:{
-                                type:'String'
-                            }
+    requestBody: {
+        content: {
+            "multipart/form-data": {
+                schema: {
+                    type: "object",
+                    properties: {
+
+                        province: {
+                            type: 'String'
                         },
-                        price:{
-                            type:'String'
+                        District: {
+                            type: 'String'
                         },
-                        YearBuilt:{
-                            type:'Date',
+                        street: {
+                            type: 'String'
+                        }
+                        ,
+                        price: {
+                            type: 'String'
+                        },
+                        YearBuilt: {
+                            type: 'Date',
                             default: 'Date'.now
                         },
-                        image:{
-                            type:'file',
-                            default:[]
+                        UploadImages: {
+                            type: "file",
+                            description: "the image of the blog post"
                         },
-                        beds:{
-                            type:'Number'
+                        beds: {
+                            type: 'Number'
                         },
-                        description:{
-                            type:'String'
+                        description: {
+                            type: 'String'
                         },
-                        bath:{
-                            type:'Number'
+                        bath: {
+                            type: 'Number'
                         },
-                        status:{
-                            type:'String'
+                        status: {
+                            type: 'String'
                         },
-                        
-                        LotSize:{
-                            type:'String'
+
+                        LotSize: {
+                            type: 'String'
                         },
-                        description:{
-                            type:'String'
+                        description: {
+                            type: 'String'
                         }
                     }
                 }
             }
         }
     },
-    responses:{
-        200:{
-            description:"OK",
-            content:{
-                "application/json":{
-                    type:"object",
-                    example:{
-                        status:"success",
-                        data:[]
+    responses: {
+        200: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    type: "object",
+                    example: {
+                        status: "success",
+                        data: []
                     }
                 }
             }
@@ -76,41 +76,42 @@ const createRealEstate = {
     }
 }
 
-    
-    const deleteUserById = {
-        tags:['User'],
-        description:"Delete the user by id",
-        security: [
-            {
-              token: [],
-            },
-        ],
-        parameters:[
-            {
-                name:"id",
-                in:"path",
-                description:"id of user",
-                type:"string",
-                example:"63caaf3527b29e1d399896da"
-            }
-        ],
-        responses:{
-            200:{
-                description:"OK",
-                content:{
-                     "application/json":{
-                        type:'object',
-                        example:{
-                            status:"success",
-                            data:[]
-                        }
-                     }
+
+const deleteUserById = {
+    tags: ['User'],
+    description: "Delete the user by id",
+    security: [
+        {
+            token: [],
+        },
+    ],
+    parameters: [
+        {
+            name: "id",
+            in: "path",
+            description: "id of user",
+            type: "string",
+            example: "63caaf3527b29e1d399896da"
+        }
+    ],
+    responses: {
+        200: {
+            description: "OK",
+            content: {
+                "application/json": {
+                    type: 'object',
+                    example: {
+                        status: "success",
+                        data: []
+                    }
                 }
             }
         }
-        }
+    }
+}
 
-exports.createRealEstate = {
-"/RealEstate/createEstate":{
-post:createRealEstate,
-}}
+exports.RealEstateDocs = {
+    "/RealEstate/createEstate": {
+        post: createRealEstate,
+    }
+}
