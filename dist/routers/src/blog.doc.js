@@ -62,26 +62,13 @@ var createBlog = {
           type: "object",
           properties: {
             title: {
-              type: String,
-              //required:true,
-              unique: true
+              type: "string"
             },
             body: {
-              type: String
+              type: "string"
             },
-            Author: {
-              type: String
-            },
-            likes: {
-              type: Number,
-              "default": 0
-            },
-            comment: [{
-              type: String,
-              href: "coments"
-            }],
-            img: {
-              type: String,
+            UploadImages: {
+              type: "file",
               description: "the image of the blog post"
             }
           }

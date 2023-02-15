@@ -8,7 +8,7 @@ const User = require('../module/User')
 const bodyParser = require('body-parser')
 const jwt = require('jsonwebtoken');
 //const AuthUser = require("../../midleware");
-const Blog = require("../module/Blog");
+// const Blog = require("../module/Blog");
 //const middleware = require("../../midleware");
 
 
@@ -105,23 +105,23 @@ router.post("/Login", async (req, res, next) => {
 
 })
 
-router.delete('/delete/:_id', (req, res, next) => {
-    Blog.remove({ _id: req.params.userId })
-        .exec()
-        .then(
-            result => {
-                res.status(200).json({
-                    message: "User Deleted !"
-                })
-            }
-        )
-        .catch(err => {
-            console.log(err)
-            res.status(500).json({
-                error: err
-            })
-        })
-})
+// router.delete('/delete/:_id', async(req, res, next) => {
+//     await Blog.remove({ _id: req.params.userId })
+//         .exec()
+//         .then(
+//             result => {
+//                 res.status(200).json({
+//                     message: "User Deleted !"
+//                 })
+//             }
+//         )
+//         .catch(err => {
+//             console.log(err)
+//             res.status(500).json({
+//                 error: err
+//             })
+//         })
+// })
 router.patch("/update/:id", async (req, res) => {
 
     try {

@@ -13,7 +13,7 @@ var User = require('../module/User');
 var bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
 //const AuthUser = require("../../midleware");
-var Blog = require("../module/Blog");
+// const Blog = require("../module/Blog");
 //const middleware = require("../../midleware");
 
 router.post('/signup', /*#__PURE__*/function () {
@@ -21,7 +21,8 @@ router.post('/signup', /*#__PURE__*/function () {
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          User.find({
+          _context.next = 2;
+          return User.find({
             email: req.body.email
           }).exec().then(function (user) {
             if (user.length === 1) {
@@ -61,7 +62,7 @@ router.post('/signup', /*#__PURE__*/function () {
               error: error
             });
           });
-        case 1:
+        case 2:
         case "end":
           return _context.stop();
       }
@@ -101,7 +102,7 @@ router.get("/all", /*#__PURE__*/function () {
 }());
 router.post("/Login", /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(req, res, next) {
-    var user, token;
+    var user, result, token;
     return _regeneratorRuntime().wrap(function _callee3$(_context3) {
       while (1) switch (_context3.prev = _context3.next) {
         case 0:
@@ -112,11 +113,16 @@ router.post("/Login", /*#__PURE__*/function () {
           });
         case 3:
           user = _context3.sent;
-          if (!user) {
-            res.status({
-              message: " Not found user"
-            });
+          console.log("try");
+          if (user) {
+            _context3.next = 10;
+            break;
           }
+          console.log("try");
+          return _context3.abrupt("return", res.status(200).json({
+            message: " Not found user"
+          }));
+        case 10:
           result = bcrypt.compare(req.body.password, user.password);
           if (!result) {
             console.log(error);
@@ -124,6 +130,7 @@ router.post("/Login", /*#__PURE__*/function () {
               message: "Error"
             });
           }
+        case 12:
           token = jwt.sign({
             id: user._id,
             email: user.email
@@ -133,39 +140,44 @@ router.post("/Login", /*#__PURE__*/function () {
             user: user,
             token: token
           });
-          _context3.next = 14;
+          _context3.next = 21;
           break;
-        case 12:
-          _context3.prev = 12;
+        case 17:
+          _context3.prev = 17;
           _context3.t0 = _context3["catch"](0);
-        case 14:
-          User.findOne({
-            email: req.body.email
-          });
-        case 15:
+          console.log(_context3.t0);
+          return _context3.abrupt("return", res.status(500).json({
+            message: "error occured",
+            error: _context3.t0
+          }));
+        case 21:
         case "end":
           return _context3.stop();
       }
-    }, _callee3, null, [[0, 12]]);
+    }, _callee3, null, [[0, 17]]);
   }));
   return function (_x7, _x8, _x9) {
     return _ref3.apply(this, arguments);
   };
 }());
-router["delete"]('/delete/:_id', function (req, res, next) {
-  Blog.remove({
-    _id: req.params.userId
-  }).exec().then(function (result) {
-    res.status(200).json({
-      message: "User Deleted !"
-    });
-  })["catch"](function (err) {
-    console.log(err);
-    res.status(500).json({
-      error: err
-    });
-  });
-});
+
+// router.delete('/delete/:_id', async(req, res, next) => {
+//     await Blog.remove({ _id: req.params.userId })
+//         .exec()
+//         .then(
+//             result => {
+//                 res.status(200).json({
+//                     message: "User Deleted !"
+//                 })
+//             }
+//         )
+//         .catch(err => {
+//             console.log(err)
+//             res.status(500).json({
+//                 error: err
+//             })
+//         })
+// })
 router.patch("/update/:id", /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4(req, res) {
     var id, user;

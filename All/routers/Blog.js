@@ -1,15 +1,9 @@
 const Blog = require('../module/Blog')
 const express = require('express');
-const  Router  = require('express');
-const router = express.Router()
-const mongoose = require('mongoose')
-const bodyParser = require("body-parser");
+const router = express.Router();
 const multer = require('multer');
 const middleware = require('../midlewares/midleware');
 const cloudinary = require('cloudinary');
-const { dotenv } = require('dotenv');
-const { findById } = require('../module/Blog');
-const coments = require('../module/coments')
 require('dotenv').config();
 
 
@@ -50,15 +44,15 @@ router.post("/createBlog",middleware,upload.single('UploadImages'),async(req,res
     try {
         const result =  await cloudinary.uploader.upload(req.file.path);
         
-        const blog=await  Blog.create({
+        // console.log("sdfghjkl");
+        const blog = await  Blog.create({
             title: req.body.title,
             body : req.body.body,
             Author:req.body.Author,
             img : result.secure_url
 
         });
-       
-        res.status(201).json({blog})
+        return res.status(201).json({blog})
   
     } catch (error) {
         console.log(error);
@@ -91,12 +85,12 @@ router.patch("/update/:edit_id",middleware,upload.single('UploadImages'),async(r
 })
 router.delete("/delete/:edit_id",middleware,async(req,res)=>{
     
+    console.log("Sucessful deleted")
     try {
         const {edit_id} = req.params;
         const blog= await Blog.deleteOne({
                 _id:edit_id
             }).exec().then((result)=>{
-                console.log("Sucessful deleted")
                 res.status(200).json(result)
             }).catch((error)=>{
                 throw error

@@ -8,7 +8,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 var Estate = require('../module/RealEstate');
-var User = require('../module/User');
+// const User=require('../routers/user');
 var express = require('express');
 var router = express.Router();
 var cloudinary = require('cloudinary');
@@ -95,9 +95,9 @@ router.post('/createEstate', upload.array('UploadImages'), /*#__PURE__*/function
             bath: req.body.bath,
             status: req.body.status,
             LotSize: req.body.lotsize,
-            YearBuilt: req.body.year,
-            posted_by: user.username,
-            userId: user._id
+            YearBuilt: req.body.year
+            // posted_by:User.username,
+            // userId:User._id
           });
           _context.next = 25;
           return estate.save();

@@ -6,18 +6,10 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 var Blog = require('../module/Blog');
 var express = require('express');
-var Router = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
-var bodyParser = require("body-parser");
 var multer = require('multer');
 var middleware = require('../midlewares/midleware');
 var cloudinary = require('cloudinary');
-var _require = require('dotenv'),
-  dotenv = _require.dotenv;
-var _require2 = require('../module/Blog'),
-  findById = _require2.findById;
-var coments = require('../module/coments');
 require('dotenv').config();
 var storage = multer.diskStorage({
   destination: function destination(req, file, cb) {
@@ -68,11 +60,9 @@ router.post("/createBlog", middleware, upload.single('UploadImages'), /*#__PURE_
           });
         case 6:
           blog = _context.sent;
-          res.status(201).json({
+          return _context.abrupt("return", res.status(201).json({
             blog: blog
-          });
-          _context.next = 14;
-          break;
+          }));
         case 10:
           _context.prev = 10;
           _context.t0 = _context["catch"](0);
@@ -169,30 +159,30 @@ router["delete"]("/delete/:edit_id", middleware, /*#__PURE__*/function () {
     return _regeneratorRuntime().wrap(function _callee4$(_context4) {
       while (1) switch (_context4.prev = _context4.next) {
         case 0:
-          _context4.prev = 0;
+          console.log("Sucessful deleted");
+          _context4.prev = 1;
           edit_id = req.params.edit_id;
-          _context4.next = 4;
+          _context4.next = 5;
           return Blog.deleteOne({
             _id: edit_id
           }).exec().then(function (result) {
-            console.log("Sucessful deleted");
             res.status(200).json(result);
           })["catch"](function (error) {
             throw error;
           });
-        case 4:
+        case 5:
           blog = _context4.sent;
-          _context4.next = 10;
+          _context4.next = 11;
           break;
-        case 7:
-          _context4.prev = 7;
-          _context4.t0 = _context4["catch"](0);
+        case 8:
+          _context4.prev = 8;
+          _context4.t0 = _context4["catch"](1);
           res.status(500).json(_context4.t0);
-        case 10:
+        case 11:
         case "end":
           return _context4.stop();
       }
-    }, _callee4, null, [[0, 7]]);
+    }, _callee4, null, [[1, 8]]);
   }));
   return function (_x8, _x9) {
     return _ref4.apply(this, arguments);

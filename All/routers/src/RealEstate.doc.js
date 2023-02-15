@@ -1,3 +1,4 @@
+const { default: file } = require("@babel/core/lib/transformation/file/file")
 
 const createRealEstate= {
     tags:['User'],
@@ -12,48 +13,41 @@ const createRealEstate= {
 
                         location:{
                             province:{
-                                type:String
+                                type:"String"
                             },
                             District:{
-                                type:String
+                                type:"String"
                             },
                             street:{
-                                type:String
+                                type:"String"
                             }
                         },
                         price:{
-                            type:String
+                            type:"String"
                         },
                         YearBuilt:{
-                            type:Date,
-                            default: Date.now
+                            type:"Date",
                         },
                         image:{
-                            type:Array,
+                            type:"file",
                             default:[]
                         },
                         beds:{
-                            type:Number
+                            type:"Number"
                         },
                         description:{
-                            type:String
+                            type:"String"
                         },
                         bath:{
-                            type:Number
+                            type:"Number"
                         },
                         status:{
-                            type:String
+                            type:"String"
                         },
                         
                         LotSize:{
-                            type:String
-                        },
-                        description:{
-                            type:String
+                            type:"String"
                         }
-
-
-
                     }
                 }
             }

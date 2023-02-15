@@ -5,10 +5,10 @@ const PORT = 7000
 const http = require('http')
 const server = http.createServer()
 const mongoose = require('mongoose')
-const BlogRouter = require('./module/Blog')
+const BlogRouter = require('./routers/Blog')
 const app = express();
-// const blog = require('./midlewares/module/routers/Blog')
-// const router = require('./midlewares/module/routers/Blog')
+const blog = require('./routers/Blog')
+
 const userRoutes = require("../All/routers/user")
 // const swaggerDoc = require('./midlewares/module/routers/src/swagga')
 const cors = require("cors")
