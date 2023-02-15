@@ -17,11 +17,7 @@ const options = {
         description: 'Development server',
       },
       {
-        url: 'https://xavier-x22k.onrender.com',
-        description: 'Production server',
-      },
-      {
-        url: 'https://odd-gold-turkey-veil.cyclic.app',
+        url: 'https://odd-cyan-binturong-fez.cyclic.app',
         description: 'Production server',
       },
 
