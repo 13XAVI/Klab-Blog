@@ -266,7 +266,7 @@ const CreatecommentBlog = {
             example:"63e49502981c85d9d72937f0",
             properties:{
             comment :{
-             type : String , ref: "User"   
+             type : 'String' , ref: "User"   
             },
            
             }
