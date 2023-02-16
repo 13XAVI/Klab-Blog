@@ -3,6 +3,7 @@ const swaggerJSDocs=require('swagger-jsdoc');
 const userRouteDocs=require('./user.doc');
 const blogRouteDocs=require('./blog.doc');
 const RealEstateDocs = require('./RealEstate.doc');
+const MessageDoc = require('./message.doc')
 
 const options = {
   definition: {
@@ -31,6 +32,7 @@ const options = {
       { name: 'User', description: 'User Routes' },
       { name: 'Blog', description: 'Blog Routes' },
       { name: 'RealEstate', description: 'RealEstate Routes' },
+      { name: 'Message', description: 'Message Routes' },
     ],
     components: {
       securitySchemes: {
@@ -43,7 +45,7 @@ const options = {
         },
       },
     },
-    paths: { ...userRouteDocs.userRouteDocs,...blogRouteDocs.blogRouteDocs,...RealEstateDocs.RealEstateDocs},
+    paths: { ...userRouteDocs.userRouteDocs,...blogRouteDocs.blogRouteDocs,...RealEstateDocs.RealEstateDocs,...MessageDoc.MessageDoc},
   },
   apis: ['../routes/**/*.js'],
 };

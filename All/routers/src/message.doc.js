@@ -20,7 +20,7 @@ const listAllMail = {
 
 const createMail = {
 tags:['Message'],
-description:"Create a User",
+description:"Create a Messsage",
 requestBody:{
     content:{
         "application/json":{
@@ -76,7 +76,7 @@ responses:{
 
 const getMailById = {
 tags:['Message'],
-description:"Get the user by id",
+description:"Get the Message by id",
 parameters:[
     {
         name:"id",
@@ -104,7 +104,7 @@ responses:{
 
 const deleteMailById = {
 tags:['Message'],
-description:"Delete the user by id",
+description:"Delete the Message by id",
 security: [
     {
       token: [],
@@ -114,7 +114,7 @@ parameters:[
     {
         name:"id",
         in:"path",
-        description:"id of user",
+        description:"id of Message",
         type:"string",
         example:"63ee03da42688498f291dc70"
     }
@@ -137,7 +137,7 @@ responses:{
 
 const updateMAilById = {
 tags:['User'],
-description:"Update user by id",
+description:"Update Message by id",
 security: [
     {
       token: [],
@@ -147,7 +147,7 @@ security: [
     {
         name:"id",
         in:"path",
-        description:"id of user",
+        description:"id of Message",
         type:"string",
         example:"63ee03da42688498f291dc70"
     }
@@ -215,7 +215,7 @@ exports.userRouteDocs = {
     patch:updateMAilById
 },
 "/Mail/Mail/:id":{
-    patch:getUserById
+    patch:getMailById
 }
 
 };
