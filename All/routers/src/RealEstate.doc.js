@@ -103,7 +103,7 @@ const createRealEstate = {
 
 const RealEstateById = {
     tags: ['RealEstate'],
-    description: "Get blog by id",
+    description: "Get RealEstate by id",
     security: [
         {
             token: [],

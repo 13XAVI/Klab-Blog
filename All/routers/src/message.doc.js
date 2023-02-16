@@ -199,7 +199,7 @@ responses:{
 }
 }
 
-exports.userRouteDocs = {
+exports.MessageRouteDocs = {
 "/Mail/createMail":{
     post:createMail,
 },
