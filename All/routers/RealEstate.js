@@ -34,9 +34,9 @@ const upload = multer({storage : storage , limits :{fileSize : 1024*1024*5}
 //cloudinary configuration
 
 cloudinary.config({
-  cloud_name: process.env.cloud_name,
-  api_key:process.env.api_key,
-  api_secret: process.env.api_secret
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
 })
 
 
