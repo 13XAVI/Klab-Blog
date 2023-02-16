@@ -45,7 +45,7 @@ const options = {
         },
       },
     },
-    paths: { ...userRouteDocs.userRouteDocs,...blogRouteDocs.blogRouteDocs,...RealEstateDocs.RealEstateDocs,...MessageRouterDocs.MessageRouteDocs},
+    paths: { ...userRouteDocs.userRouteDocs,...blogRouteDocs.blogRouteDocs,...RealEstateDocs.RealEstateDocs,...MessageRouterDocs.MessageRouterDocs},
   },
   apis: ['../routes/**/*.js'],
 };
