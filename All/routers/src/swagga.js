@@ -21,7 +21,10 @@ const options = {
         url: 'https://odd-cyan-binturong-fez.cyclic.app',
         description: 'Production server',
       },
-
+      {
+        url: 'https://francois.onrender.com',
+        description: 'Production server',
+      }
 
     ],
     tags: [

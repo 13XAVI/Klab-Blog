@@ -14,7 +14,7 @@ const userRoutes = require("../All/routers/user")
 const cors = require("cors")
 const swaggerDocs = require('./routers/src/swagga')
 const RealEstateRouter = require('./routers/RealEstate')
-
+const  MailRouter = require("./routers/Message")
 
 app.use(cors())
 app.use(express.json())
@@ -34,7 +34,7 @@ app.use('/uploads',express.static("./uploads"))
 app.use(('/blog'),BlogRouter)
 app.use(("/user"),userRoutes)
 app.use(("/RealEstate"),RealEstateRouter)
-
+app.use(("/Mail"),MailRouter)
 
 app.use(("/blog"),(req,res,next)=>{
     res.header('Access-Control-Allow-Origin','*')
