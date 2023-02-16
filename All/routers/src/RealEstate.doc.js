@@ -170,7 +170,7 @@ const deleteUserById = {
 }
 const UpdateRealEstateById = {
     tags: ['RealEstate'],
-    description: "Create a RealEstate",
+    description: "Update a RealEstate",
     security: [
         {
             token: [],
