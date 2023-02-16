@@ -72,6 +72,42 @@ router.post('/createEstate',upload.array('UploadImages'),async(req,res,next)=>{
     }
 }
 )
+
+
+router.patch('/UpdateEstate/:id',upload.array('UploadImages'),async(req,res,next)=>{
+    
+    try {
+        const files=req.files;
+        const url=[];
+        // console.log(files);
+        for(const file of files){
+            const result=await cloudinary.uploader.upload(file.path)
+            url.push(result.secure_url)
+        }
+             const estate = await Estate.findOneAndUpdate( req.body._id,{
+                location:{
+                    province:req.body.province,
+                    district:req.body.district,
+                    street:req.body.street
+                },
+                image:url,
+                price:req.body.price,
+                beds:req.body.beds,
+                description:req.body.description,
+                bath:req.body.bath,
+                status:req.body.status,
+                LotSize:req.body.lotsize,
+                YearBuilt:req.body.year,
+            },{new : true})
+            return res.status(200).json(estate)
+    } catch (error) {
+        console.log(error)
+        return res.status(400).json({message:error})
+    }
+}
+)
+
+
 router.get("/GetRealEstate/:id",middleware,async(req,res)=>{
     try{
         const comnt=await Estate.findOne();

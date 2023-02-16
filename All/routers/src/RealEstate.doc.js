@@ -168,22 +168,13 @@ const deleteUserById = {
         }
     }
 }
-
-const updateRealEstate = {
+const UpdateRealEstateById = {
     tags: ['RealEstate'],
-    description: "Update a RealEState post",
+    description: "Create a RealEstate",
     security: [
         {
             token: [],
         },
-    ],
-    parameters: [
-        {
-            name: "id",
-            in: "path",
-            description: "id of the blog",
-            type: "string"
-        }
     ],
     requestBody: {
         content: {
@@ -191,22 +182,52 @@ const updateRealEstate = {
                 schema: {
                     type: "object",
                     properties: {
-                        title: {
-                            type: "string",
+
+                        province: {
+                            type: 'String'
                         },
-                        body: {
-                            type: "string",
+                        District: {
+                            type: 'String'
+                        },
+                        street: {
+                            type: 'String'
+                        }
+                        ,
+                        price: {
+                            type: 'String'
+                        },
+                        YearBuilt: {
+                            type: 'Date',
+                            default: 'Date'.now
                         },
                         UploadImages: {
                             type: "file",
                             description: "the image of the blog post"
+                        },
+                        beds: {
+                            type: 'Number'
+                        },
+                        description: {
+                            type: 'String'
+                        },
+                        bath: {
+                            type: 'Number'
+                        },
+                        status: {
+                            type: 'String'
+                        },
+
+                        LotSize: {
+                            type: 'String'
+                        },
+                        description: {
+                            type: 'String'
                         }
                     }
                 }
             }
         }
-    },
-    responses: {
+    },responses: {
         200: {
             description: "OK",
             content: {
@@ -220,10 +241,8 @@ const updateRealEstate = {
             }
         }
     }
+
 }
-
-
-
 exports.RealEstateDocs = {
     "/RealEstate/createEstate": {
         post:createRealEstate,
@@ -237,5 +256,8 @@ exports.RealEstateDocs = {
     "/RealEstate/GetRealEstate/id": {
         get:RealEstateById,
     },
+    "/RealEstate/UpdateEstate/:id": {
+        patch:UpdateRealEstateById,
+    }
    
 }
