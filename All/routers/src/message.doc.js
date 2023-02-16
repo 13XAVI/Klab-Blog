@@ -136,7 +136,7 @@ responses:{
 }
 
 const updateMAilById = {
-tags:['User'],
+tags:['Message'],
 description:"Update Message by id",
 security: [
     {
