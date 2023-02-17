@@ -16,7 +16,7 @@ const swaggerDocs = require('./routers/src/swagga')
 const RealEstateRouter = require('./routers/RealEstate')
 const  MailRouter = require("./routers/Message")
 
-app.use(cors())
+app.use(cors({origin:"*"}))
 app.use(express.json())
 
 
