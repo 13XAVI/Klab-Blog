@@ -26,11 +26,7 @@ const listAllMail = {
 const createMail = {
     tags: ['Message'],
     description: "Create a Messsage",
-    security: [
-        {
-          token: [],
-        },
-    ],
+    
     requestBody: {
         content: {
             "application/json": {

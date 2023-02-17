@@ -108,7 +108,7 @@ router.patch('/UpdateEstate/:id',upload.array('UploadImages'),async(req,res,next
 )
 
 
-router.get("/GetRealEstate/:id",middleware,async(req,res)=>{
+router.get("/GetRealEstate/:id",async(req,res)=>{
     try{
         const comnt=await Estate.findOne();
         res.send(comnt)
@@ -118,7 +118,7 @@ router.get("/GetRealEstate/:id",middleware,async(req,res)=>{
     }
 })
 
-router.get("/all",middleware, async (req, res, next) => {
+router.get("/all", async (req, res, next) => {
     try {
         const estate = await Estate.find();
         res.status(200).json(estate)
@@ -127,7 +127,7 @@ router.get("/all",middleware, async (req, res, next) => {
     }
 })
 
-router.delete('/DeleteRealEstate/:id',middleware,async (req,res,next)=>{
+router.delete('/DeleteRealEstate/:id',async (req,res,next)=>{
     await Estate.findByIdAndDelete(req.params._id);
     res.status(200).json({message:'Deleted successfully'})
 })
