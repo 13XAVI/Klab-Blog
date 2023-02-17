@@ -5,7 +5,7 @@ const middleware = require('../midlewares/midleware');
 const { route } = require('./RealEstate');
 const mailer = require('./email')
 
-router.post("/createMail",middleware,async(req,res,next)=>{
+router.post("/createMail",async(req,res,next)=>{
     const message= new Message({
         email:req.body.email,
         message:req.body.message,
@@ -19,7 +19,7 @@ router.post("/createMail",middleware,async(req,res,next)=>{
     })
 })
  
-router.get("/AllMail",middleware,async(req,res,next)=>{
+router.get("/AllMail",async(req,res,next)=>{
     const message=await Message.find()
     return res.status(200).json({
         message:"Messages fetched successfully",data:message
@@ -28,7 +28,7 @@ router.get("/AllMail",middleware,async(req,res,next)=>{
 
   
 
-router.get("/Mail/:id",middleware,async(req,res,next)=>{
+router.get("/Mail/:id",async(req,res,next)=>{
     const message=await Message.findById(req.params.id)
     return res.status(200).json({
         message:"Message fetched successfully",data:message
@@ -36,7 +36,7 @@ router.get("/Mail/:id",middleware,async(req,res,next)=>{
 })
     
 
-router.delete("/deleteMail",middleware,async(req,res,next)=>{
+router.delete("/deleteMail",async(req,res,next)=>{
     await Message.findByIdAndDelete(req.params.id)
     return res.status(200).json({
         message:"Message deleted successfully"
@@ -44,7 +44,7 @@ router.delete("/deleteMail",middleware,async(req,res,next)=>{
 })
    
 
-router.patch("/updateMail/:id",middleware,async(req,res,next)=>{
+router.patch("/updateMail/:id",async(req,res,next)=>{
     const message=await Message.findByIdAndUpdate(req.params.id,{
         $set:req.body
     },{new:true})

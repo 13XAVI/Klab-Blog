@@ -26,11 +26,11 @@ const listAllMail = {
 const createMail = {
     tags: ['Message'],
     description: "Create a Messsage",
-    security: [
-        {
-          token: [],
-        },
-    ],
+    // security: [
+    //     {
+    //       token: [],
+    //     },
+    // ],
     requestBody: {
         content: {
             "application/json": {
@@ -88,11 +88,11 @@ const createMail = {
 const getMailById = {
     tags: ['Message'],
     description: "Get the Message by id",
-    security: [
-    {
-      token: [],
-    },
-],
+//     security: [
+//     {
+//       token: [],
+//     },
+// ],
     parameters: [
         {
             name: "id",
@@ -154,11 +154,11 @@ const deleteMailById = {
 const updateMAilById = {
     tags: ['Message'],
     description: "Update Message by id",
-    security: [
-        {
-            token: [],
-        },
-    ],
+    // security: [
+    //     {
+    //         token: [],
+    //     },
+    // ],
     parameters: [
         {
             name: "id",
