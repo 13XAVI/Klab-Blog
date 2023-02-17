@@ -1,6 +1,11 @@
 const listAllMail = {
     tags: ['Message'],
     description: "List all Mail",
+    security: [
+        {
+          token: [],
+        },
+    ],
 
     responses: {
         200: {
@@ -21,6 +26,11 @@ const listAllMail = {
 const createMail = {
     tags: ['Message'],
     description: "Create a Messsage",
+    security: [
+        {
+          token: [],
+        },
+    ],
     requestBody: {
         content: {
             "application/json": {
@@ -78,6 +88,11 @@ const createMail = {
 const getMailById = {
     tags: ['Message'],
     description: "Get the Message by id",
+    security: [
+    {
+      token: [],
+    },
+],
     parameters: [
         {
             name: "id",
