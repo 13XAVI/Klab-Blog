@@ -104,11 +104,11 @@ const createRealEstate = {
 const RealEstateById = {
     tags: ['RealEstate'],
     description: "Get RealEstate by id",
-    security: [
-        {
-            token: [],
-        },
-    ],
+    // security: [
+    //     {
+    //         token: [],
+    //     },
+    // ],
     parameters: [
         {
             name: "id",
@@ -139,11 +139,11 @@ const RealEstateById = {
 const deleteUserById = {
     tags: ['RealEstate'],
     description: "Delete the user by id",
-    security: [
-        {
-            token: [],
-        },
-    ],
+    // security: [
+    //     {
+    //         token: [],
+    //     },
+    // ],
     parameters: [
         {
             name: "id",
@@ -171,11 +171,11 @@ const deleteUserById = {
 const UpdateRealEstateById = {
     tags: ['RealEstate'],
     description: "Update a RealEstate",
-    security: [
-        {
-            token: [],
-        },
-    ],
+    // security: [
+    //     {
+    //         token: [],
+    //     },
+    // ],
     requestBody: {
         content: {
             "multipart/form-data": {
