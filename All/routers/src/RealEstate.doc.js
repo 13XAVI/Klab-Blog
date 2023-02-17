@@ -28,11 +28,11 @@ const listAllRealEstate = {
 const createRealEstate = {
     tags: ['RealEstate'],
     description: "Create a RealEstate",
-    security: [
-        {
-            token: [],
-        },
-    ],
+    // security: [
+    //     {
+    //         token: [],
+    //     },
+    // ],
     requestBody: {
         content: {
             "multipart/form-data": {
