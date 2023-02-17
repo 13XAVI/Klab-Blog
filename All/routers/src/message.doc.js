@@ -49,8 +49,8 @@ const createMail = {
                         },
                         phone: {
                             type: "Number",
-                            description: "user Password",
-                            example: "0780000000000"
+                            description: "user Phone",
+                            example: "078000000"
                         }
                     }
                 }
@@ -200,7 +200,7 @@ const updateMAilById = {
     }
 }
 
-export const MessageRouterDocs = {
+exports.MessageRouterDocs = {
     "/Mail/createMail": {
         post: createMail,
     },
