@@ -121,11 +121,11 @@ const getMailById = {
 const deleteMailById = {
     tags: ['Message'],
     description: "Delete the Message by id",
-    security: [
-        {
-            token: [],
-        },
-    ],
+    // security: [
+    //     {
+    //         token: [],
+    //     },
+    // ],
     parameters: [
         {
             name: "id",
